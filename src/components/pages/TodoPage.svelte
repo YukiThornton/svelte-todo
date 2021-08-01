@@ -1,7 +1,7 @@
 <script lang="ts">
     import Input from '../atoms/Input.svelte';
-    import Item from '../molecules/Item.svelte';
     import Button from '../atoms/Button.svelte';
+    import ItemList from './../organisms/ItemList.svelte'
     
     let uid = 1;
     let todos = [
@@ -41,19 +41,13 @@
 
 <main>
     <div class="lists">
-        <div class="container">
-            <h2>TODO!</h2>
-            {#each todos as {id, text, done} (id)}
-                <Item {id} {text} {done} on:toggleDone={toggleDone} />
-            {/each}
-        </div>
-        <div class="container">
-            <h2>DONE!</h2>
-            {#each dones as {id, text, done} (id)}
-                <Item {id} {text} {done} on:toggleDone={toggleDone} />
-            {/each}
-            <Button on:click={removeDones} disabled={dones.length === 0}>Clear All</Button>
-        </div>
+        <ItemList items={todos} on:toggleDone={toggleDone} color="#9dd28b" emptyMessage="Add your todos!">
+            <h2 slot="title">TODO!</h2>
+        </ItemList>
+        <ItemList items={dones} on:toggleDone={toggleDone} emptyMessage="Nothing to show">
+            <h2 slot="title">DONE!</h2>
+            <Button slot="action" on:click={removeDones} disabled={dones.length === 0}>Clear All</Button>
+        </ItemList>
     </div>
     <Input value='' on:inputFinished={addTodo}/>
 </main>
@@ -63,9 +57,9 @@
         padding: 30px;
     }
     .lists {
-        display: flex;
-    }
-    .container {
-        width: 50vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        column-gap: 20px;
     }
 </style>
