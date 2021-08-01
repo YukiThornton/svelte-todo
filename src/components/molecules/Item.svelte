@@ -2,7 +2,7 @@
     import { createEventDispatcher } from 'svelte';
     import { quintOut } from 'svelte/easing';
     import { fly  } from 'svelte/transition';
-    import Checkbox from './Checkbox.svelte';
+    import Checkbox from '../atoms/Checkbox.svelte';
 
     const dispatch = createEventDispatcher();
     export let id;

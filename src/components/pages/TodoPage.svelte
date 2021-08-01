@@ -1,7 +1,7 @@
 <script lang="ts">
-    import Input from './Input.svelte';
-    import Item from './Item.svelte';
-    import Button from './Button.svelte';
+    import Input from '../atoms/Input.svelte';
+    import Item from '../molecules/Item.svelte';
+    import Button from '../atoms/Button.svelte';
     
     let uid = 1;
     let todos = [
